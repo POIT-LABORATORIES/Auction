@@ -6,11 +6,21 @@
 
     <servlet>
         <servlet-name>Controller</servlet-name>
-        <servlet-class>myapp.Controller</servlet-class>
+        <servlet-class>servlets.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Controller</servlet-name>
         <url-pattern>/Controller</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>servlets.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -1,0 +1,356 @@
+/* Заголовки, font-family: 'Oswald', sans-serif;*/
+@import url('https://fonts.googleapis.com/css?family=Oswald:700&display=swap&subset=cyrillic-ext');
+/* Текст, font-family: 'Roboto', sans-serif;*/
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap&subset=cyrillic-ext');
+/* Навигация, font-family: 'Playfair Display SC', serif;*/
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display+SC:900&display=swap&subset=cyrillic');
+/* Текст, font-family: 'Playfair Display SC', serif;*/
+@import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap&subset=cyrillic-ext');
+/* Навигация, font-family: 'Ubuntu', serif;*/
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:500&display=swap&subset=cyrillic-ext');
+
+:root
+{
+    --Color: #F11A36;
+}
+body
+{
+    line-height: 1.5;
+    background-image: url("../Pictures/what-the-hex.png");
+    background-repeat: repeat;
+    font-family: "Open Sans", sans serif;
+}
+.logoNav
+{
+    width: 286px;
+    height: 45px;
+    background-image: url("../Pictures/Logo.png");
+    transition: opacity .1s;
+}
+.logoNav:hover
+{
+    opacity: 0.9;
+}
+.mainContainer
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+.midContainer
+{
+    height: auto;
+    width: 75vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: #f1eee8;
+    /*justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;*/
+}
+.midStyle
+{
+    height: auto;
+    width: 75vw;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+.midStyle h1
+{
+    color: #F11A36;
+    width: auto;
+}
+.header
+{
+    display: flex;
+    flex-wrap: wrap; /*перенос строки */
+    justify-content: flex-start; /*прижимает содержимое к краям */
+    align-items: center; /*выравнивает элементы по центру на вертикальной */
+}
+.header .menu ul
+{
+    display: flex;
+    list-style: none;
+}
+.header .menu ul li
+{
+    margin: 0px 10px;
+    padding: 0.5em;
+    font-family: 'Ubuntu', serif;
+}
+
+.menu ul a
+{
+    font-size: 1.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    background: linear-gradient(to bottom, var(--Color) 0%, var(--Color) 100%);
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 2px 2px;
+    transition: background-size .2s ease-out, color .2s linear;
+}
+.menu ul a:hover
+{
+    color: #fff;
+    background-size: 4px 50px;
+}
+.navContainer
+{
+    /*width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: auto;
+    background-color: brown;
+    align-self: center;*/
+}
+.newsContainer
+{
+    /*background-color: greenyellow;
+    height: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-grow: 2;*/
+    height: 100%;
+    width: 848px; /*75vw*/
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: white;
+}
+.mainParagraph
+{
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    font-family: 'IBM Plex Sans', sans-serif;
+}
+.newsBlock
+{
+    background-color: white;
+    height: auto;
+    width: min-content;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.newsBlock h3
+{
+    padding: 0.5em;
+    padding-left: 1em;
+    font-family: 'Oswald', sans-serif;
+}
+.newsTitleBlock
+{
+    width: 100%;
+    align-content: start;
+    height: min-content;
+}
+.newsBlock:hover
+{
+    color: #F11A36;
+}
+.newsBlockBottom
+{
+    width: 100%;
+    text-align: left;
+    color: #C5C5C5;
+    height: auto;
+    padding-left: 1em;
+    padding-bottom: 0.5em;
+    font-size: 1.25em;
+}
+.newsBlockBottom p
+{
+    margin: 0;
+}
+.sidebarContainer
+{
+    background-color: #fff;
+    height: 100%;
+    width: 700px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.sidebarTitle
+{
+    background-color: #F11A36;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+.sidebarTitle h2
+{
+    display: flex;
+    margin: 10px;
+    justify-content: center;
+    font-family: Lato Tahoma;
+}
+.bestListBar
+{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+}
+.bestList
+{
+    margin-left: 0;
+    list-style: none;
+    counter-reset: li;
+    font-family: Calibri;
+}
+.bestList li {
+    padding: 10px 0;
+    position: relative;
+    left: 1.5em;
+    margin-bottom: 0.75em;
+    padding-left: 1em;
+    background: #E3DEDC;
+}
+.bestList li:before {
+    padding: 10px 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -1.5em;
+    width: 1.875em;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    background: #D66786;
+    border-bottom-left-radius: 70em;
+    border-top-left-radius: 70em;
+    counter-increment: li;
+    content: counter(li);
+}
+.footerContainer
+{
+    height: auto;
+    background-color: #2F2F2F;
+    color: #869797;
+    display: flex;
+    min-height: 100%;
+}
+.footerText
+{
+    width: 50vw;
+    height: auto;
+    display: flex;
+    margin: auto;
+    font-size: 1.35em;
+}
+.ImgTitleBLock
+{
+    object-fit: cover;
+    width: 100%;
+    max-width: 848px;
+    position: relative;
+    padding-bottom: 56.25%; /* задаёт высоту контейнера для 16:9 (если 4:3 — поставьте 75%) */
+    height: 0;
+    overflow: hidden;
+}
+.ImgTitleBLock img
+{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-width: 0;
+    outline-width: 0;
+    transition: opacity 0.1s;
+    background-size: 100% auto;
+}
+.newsImgBlock
+{
+    object-fit: cover;
+    width: 416px;
+    position: relative;
+    padding-bottom: 75%; /* задаёт высоту контейнера для 16:9 (если 4:3 — поставьте 75%) */
+    height: 0;
+    overflow: hidden;
+}
+.newsImgBlock img
+{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-width: 0;
+    outline-width: 0;
+    transition: opacity 0.1s;
+}
+.newsImgBlock img:hover
+{
+    opacity: 0.9;
+}
+.bestListBar
+{
+    padding: 1em;
+}
+
+@media screen and (max-width: 1120px)
+{
+    .header  {
+        flex-direction: column;
+        align-content: center;
+    }
+    .header .menu ul
+    {
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+    }
+    .header .menu ul li
+    {
+        margin: 5px;
+    }
+}
+
+@media screen and (max-width: 1500px)
+{
+    .sidebarContainer
+    {
+        visibility: hidden;
+        height: 0;
+        width: 0;
+    }
+}
+
+@media screen and (min-width: 1500px) /*1120*/
+{
+    .midContainer
+    {
+        width: 1390px;
+    }
+    .newsContainer
+    {
+        width: 1020px;
+    }
+    .midStyle
+    {
+        width: 1390px;
+    }
+}
