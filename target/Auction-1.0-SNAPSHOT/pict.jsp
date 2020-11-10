@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<img src="pictures/FFB.jpg" alt="Final Fantasy VII" width="848" height="477">
+<img src="pictures/FFB.jpg" alt="Final Fantasy VII">
 </body>
 </html>
