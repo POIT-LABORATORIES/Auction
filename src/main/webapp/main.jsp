@@ -128,6 +128,8 @@
             </div>
         </div>
     </div>
+    <jsp:include page="WEB-INF/general-content/footer.html" />
+    <!--
     <footer class="midStyle footerContainer">
         <div class="footerText">
             <p>Ждете Cyberpunk 2077 или PlayStation 5? Интересуетесь новой Call of Duty
@@ -138,6 +140,7 @@
                 Tesla и другими проектами Илона Маска?</p>
         </div>
     </footer>
+    -->
 </div>
 </body>
 </html>

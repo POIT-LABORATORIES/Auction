@@ -15,7 +15,6 @@ body
 {
     margin: 0;
     line-height: 1.5;
-    background-image: url("../Pictures/what-the-hex.png");
     background-repeat: repeat;
     font-family: "Open Sans", sans serif;
 }
@@ -60,7 +59,7 @@ body
 .midStyle
 {
     height: auto;
-    width: 75vw;
+    width: 75vw; /*75vw*/
     flex-direction: row;
     justify-content: flex-start;
 }
@@ -193,7 +192,7 @@ body
 }
 .sidebarTitle
 {
-    background-color: #F11A36;
+    background-color: #36B3E9;
     width: 100%;
     color: white;
     text-align: center;
@@ -314,7 +313,7 @@ body
 
 }
 
-@media screen and (min-width: 1440px) /*1120*/
+@media screen and (min-width: 1440px)
 {
     .midContainer
     {
