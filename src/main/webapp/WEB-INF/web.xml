@@ -5,6 +5,16 @@
          version="4.0">
 
     <servlet>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>servlets.MainServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/main</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>Controller</servlet-name>
         <servlet-class>servlets.Controller</servlet-class>
     </servlet>

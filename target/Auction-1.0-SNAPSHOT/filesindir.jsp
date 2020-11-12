@@ -6,27 +6,29 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page import="java.io.File" %>
-<%@ page import = "java.io.*,java.util.*" %>
+<%@ page import="org.apache.commons.io.FileUtils" %>
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
 <ul>
-    <li>Hello</li>
 <%
-    PrintWriter writer = response.getWriter();
-    File dir = new File("src\\main\\webapp\\HTML");
+    File tempDirectory = new File(FileUtils.getTempDirectoryPath());
+    File dir = new File("../webapps/Auction/");
     if(dir.isDirectory()){
-        for(File file : dir.listFiles()){
-            writer.println("<li>" + file.getName() + "</li>");
+        for(File file : tempDirectory.listFiles()){
+            out.println("<li>" + file.getName() + "</li>");
         }
     } else{
-        writer.println("<li>Not dir</li>");
+        out.println("<li>Not dir</li>");
     }
-    writer.println("<li>Generated</li>");
-    writer.close();
+    if (dir.isFile())
+        out.println("<li>html file</li>");
+    else
+        out.println("<li>not file either</li>");
 %>
 </ul>
 </body>
