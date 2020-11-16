@@ -15,18 +15,7 @@
 <body>
 <ul>
 <%
-    File dir = new File("../webapps/Auction/");
-    if(dir.isDirectory()){
-        for(File file : dir.listFiles()){
-            out.println("<li>" + file.getName() + "</li>");
-        }
-    } else{
-        out.println("<li>Not dir</li>");
-    }
-    if (dir.isFile())
-        out.println("<li>html file</li>");
-    else
-        out.println("<li>not file either</li>");
+    out.println("grhth");
 %>
 </ul>
 </body>

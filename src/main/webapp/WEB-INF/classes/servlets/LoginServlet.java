@@ -2,9 +2,7 @@ package servlets;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -21,8 +19,13 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("pass");
 
         response.setContentType("text/html");
+        HttpSession session = request.getSession(); //
+        Cookie[] cookie = request.getCookies(); //
         PrintWriter writer = response.getWriter();
         try {
+            for (Cookie cook : cookie){
+                writer.println(cook.getName() + " - " + cook.getValue());
+            }
             writer.println("<h2>First name:" + firstName + "</h2>");
             writer.println("<h2>Last name:" + lastName + "</h2>");
             writer.println("<h2>Email:" + email + "</h2>");
