@@ -25,8 +25,7 @@ public class Controller extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher requestDispatcher =
-                request.getRequestDispatcher("/WEB-INF/jsp/main.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/UserList.jsp");
         requestDispatcher.forward(request, response);
     }
 }

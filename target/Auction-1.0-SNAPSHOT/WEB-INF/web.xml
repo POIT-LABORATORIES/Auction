@@ -5,6 +5,17 @@
          version="4.0">
 
     <servlet>
+        <servlet-name>ListServlet</servlet-name>
+        <servlet-class>servlets.ListServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ListServlet</servlet-name>
+        <url-pattern>/userlist</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>servlets.MainServlet</servlet-class>
     </servlet>
