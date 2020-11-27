@@ -13,7 +13,6 @@
 </head>
 <body>
 <ul>
-    <jsp:useBean id="users" scope="request" type="java.util.List"/>
     <c:forEach var="user" items="${users}">
         <ul>
             <li><c:out value="${user.getName()}" /></li>

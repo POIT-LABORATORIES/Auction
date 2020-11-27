@@ -31,7 +31,7 @@
             <input type="password" name="pass" id="pass" placeholder="password" value="" required>
         </div>
         <div class="formField inputRight submitField">
-            <input type="submit" value="Зарегестрироваться">
+            <input type="submit" value="Зарегистрироваться">
         </div>
         <a href="login.jsp" class="cl-effect-1">Войти</a>
     </form>

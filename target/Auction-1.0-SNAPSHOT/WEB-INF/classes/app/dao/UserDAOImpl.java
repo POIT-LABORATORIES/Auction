@@ -83,6 +83,28 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public boolean emailExists(String email) throws DAOException {
+        PreparedStatement ps = null;
+        try {
+            try(Connection connection = getConnection()){
+                String selectQuery = "SELECT email FROM users WHERE email = ?;";
+                ps = connection.prepareStatement(selectQuery);
+                ps.setString(1, email);
+                ResultSet rs = ps.executeQuery();
+                return rs.next();
+            }
+        } catch (Exception e) {
+            throw new DAOException(e);
+        } finally{
+            try{
+                ps.close();
+            } catch (Exception e) {
+                throw new DAOException(e);
+            }
+        }
+    }
+
+    @Override
     public void create(User user) throws DAOException {
         try {
             try(Connection connection = getConnection()){

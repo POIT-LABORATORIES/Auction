@@ -9,7 +9,7 @@ import app.service.exception.ServiceException;
 import java.util.List;
 
 public class UserServiceImpl implements UserService {
-    private UserDAO userDAO;
+    private static UserDAO userDAO;
 
     public UserServiceImpl() {
         DAOFactory daoObjectFactory = DAOFactory.getInstance();
@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(User user) throws ServiceException {
+    public void addUser(User user) throws ServiceException {
         try {
             if (user != null){
                 userDAO.create(user);
@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(User user) throws ServiceException {
+    public void deleteUser(User user) throws ServiceException {
         try {
             if (user != null){
                 userDAO.delete(user);
@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void edit(User user) throws ServiceException {
+    public void editUser(User user) throws ServiceException {
         try {
             if (user != null){
                 userDAO.update(user);
@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(int id) throws ServiceException {
+    public User getUserById(int id) throws ServiceException {
         try {
             return userDAO.retrieve(id);
         } catch (DAOException e){
@@ -75,6 +75,14 @@ public class UserServiceImpl implements UserService {
                 userDAO.registration(user);
             }
         } catch (DAOException e){
+            throw new ServiceException(e);
+        }
+    }
+
+    public static boolean emailExists(String email) throws ServiceException {
+        try {
+            return userDAO.emailExists(email);
+        } catch (DAOException e) {
             throw new ServiceException(e);
         }
     }

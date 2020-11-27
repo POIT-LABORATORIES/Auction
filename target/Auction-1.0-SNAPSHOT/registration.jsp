@@ -11,7 +11,7 @@
     <link href="styles/LogFormStyles.css" rel="stylesheet">
     <link href="styles/StyledFramedLink.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Registration</title>
 </head>
 <body>
 <div class="formContainer">
@@ -27,11 +27,11 @@
             <input type="email" name="email" id="email" placeholder="Youremail@gmail.com" value="" required>
         </div>
         <div class="formField inputRight">
-            <label for="pass">Passwd</label>
+            <label for="pass">Password</label>
             <input type="password" name="pass" id="pass" placeholder="password" value="" required>
         </div>
         <div class="formField inputRight submitField">
-            <input type="submit" value="Зарегестрироваться">
+            <input type="submit" value="Зарегистрироваться">
         </div>
         <a href="login.jsp" class="cl-effect-1">Войти</a>
     </form>

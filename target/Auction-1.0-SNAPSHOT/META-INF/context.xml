@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
     <Resource name="jdbc/pooling" auth="Container" type="javax.sql.DataSource"
-              maxActive="100" maxIdle="30" maxWait="10000"
-              removeAbandoned="true" removeAbandonedTimeout="60" logAbandoned="true"
+              maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+              removeAbandonedOnMaintenance="true" removeAbandonedTimeout="60"
+              timeBetweenEvictionRunsMillis="30" logAbandoned="true"
               username="Rookie" password="grasp0189rob"
               driverClassName="com.mysql.jdbc.Driver"
               url="jdbc:mysql://localhost/auction_db?serverTimezone=Europe/Moscow&amp;useSSL=false" />
