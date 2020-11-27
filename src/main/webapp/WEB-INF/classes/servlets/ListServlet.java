@@ -15,7 +15,7 @@ public class ListServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        User userList = new User("Zek", "Zek@mail.ru", "zek2020");
+        User userList = new User(15, "Zek", "Zek@mail.ru", "zek2020");
         request.setAttribute("users", userList);
         getServletContext().getRequestDispatcher("/UserList.jsp").forward(request, response);
     }

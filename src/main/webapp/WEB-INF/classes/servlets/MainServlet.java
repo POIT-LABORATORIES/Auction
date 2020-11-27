@@ -15,9 +15,6 @@ public class MainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //String path = "/main.jsp";
-        //RequestDispatcher requestDispatcher = getServletContext().getRequestDispatcher(path);
-        //requestDispatcher.forward(request, response);
         request.getRequestDispatcher("/main.jsp").forward(request, response);
     }
 }
