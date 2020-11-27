@@ -19,9 +19,9 @@ public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html");
-        //HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
         //Cookie[] cookie = request.getCookies();
+
 
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService userService = serviceFactory.getUserService();
@@ -33,11 +33,12 @@ public class LoginServlet extends HttpServlet {
 
             User user = new User(-1, firstName, email, password);
             userService.registration(user);
-            List<User> userList = new ArrayList<>();
-            userList.add(user);
-            request.setAttribute("users", userList);
+            //List<User> userList = new ArrayList<>();
+            //userList.add(user);
+            session.setAttribute("user", user);
 
-            getServletContext().getRequestDispatcher("/UserList.jsp").forward(request, response);
+            //getServletContext().getRequestDispatcher("/main").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/main");
         }
         catch(Exception ex){
             writer.println("Connection failed...");

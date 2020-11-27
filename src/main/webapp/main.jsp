@@ -6,9 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <link href="styles/MainStyles.css" rel="stylesheet">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Main</title>
 </head>
 <body>
@@ -21,6 +23,7 @@
                 <li><a href="main.jsp">Технологии</a></li>
                 <li><a href="main.jsp">Индустрия</a></li>
                 <li><a href="login">Регистрация</a></li>
+                <li><a href="#">${user.getName()}</a></li>
             </ul>
         </nav>
     </header>

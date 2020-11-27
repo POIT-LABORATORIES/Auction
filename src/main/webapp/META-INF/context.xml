@@ -5,6 +5,6 @@
               removeAbandonedOnMaintenance="true" removeAbandonedTimeout="60"
               timeBetweenEvictionRunsMillis="10000" logAbandoned="true"
               username="Rookie" password="grasp0189rob"
-              driverClassName="com.mysql.jdbc.Driver"
+              driverClassName="com.mysql.cj.jdbc.Driver"
               url="jdbc:mysql://localhost/auction_db?serverTimezone=Europe/Moscow&amp;useSSL=false" />
 </Context>
