@@ -4,6 +4,7 @@ import app.models.Lot;
 import app.service.LotService;
 import app.service.ServiceFactory;
 import app.service.UserService;
+import app.service.exception.ServiceException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,9 +19,11 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Objects;
 
 @MultipartConfig
@@ -31,47 +34,74 @@ public class Controller extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("lot_name");
-        String bid = request.getParameter("bid");
-        int condition;
-        if (Objects.equals(request.getParameter("condition"), "New")){
-            condition = 0;
-        } else{
-            condition = 1;
+
+        PrintWriter writer = response.getWriter();
+        try {
+            String name = request.getParameter("lot_name");
+            String bid = request.getParameter("bid");
+            int condition;
+            if (Objects.equals(request.getParameter("condition"), "New")){
+                condition = 0;
+            } else{
+                condition = 1;
+            }
+
+
+
+            //YYYY-MM-DD HH:MM:SS
+            String dateTime = request.getParameter("finish_time") + ":00.00";
+            //SimpleDateFormat timeStamp = new SimpleDateFormat("dd.MM.yyyy hh:mm:ss[.....]");
+            //Date parsedDate = timeStamp.parse(request.getParameter("finish_time").replace("T"," "));
+            //Date parsedDate = timeStamp.parse(dateTime.replace("T"," "));
+            //timestamp = new Timestamp(parsedDate.getTime());
+
+            //String datetimeLocal = request.getParameter("finish_time");
+            Timestamp timestamp = Timestamp.valueOf(dateTime.replace("T"," "));
+            String finishTime = timestamp.toString();
+
+
+
+
+            Part filePart = request.getPart("img_file");
+            String imgFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            InputStream fileContent = filePart.getInputStream();
+
+
+
+            // Создание объекта 'Lot lot', заполнение полей.
+            Lot lot = new Lot();
+            lot.setLotName(name);
+            lot.setBid(Integer.parseInt(bid));
+            lot.setCondition(condition);
+            lot.setFinishTime(finishTime);
+            lot.setImageInputStream(fileContent);
+
+
+            // Получение LotServlet, вызов метода 'createLot' с передачей
+            // fileContent
+            ServiceFactory serviceFactory = ServiceFactory.getInstance();
+            LotService lotService = serviceFactory.getLotService();
+            lotService.addLot(lot);
+
+            //
+            //List<Lot> lots = lotService.getAllActiveLots();
+            //request.setAttribute("lots", lots);
+            //request.getRequestDispatcher("/lots.jsp").forward(request, response);
+
+            /*
+            writer.println(lot.getLotName());
+            writer.println(lot.getBid());
+            writer.println(lot.getCondition());
+            writer.println(lot.getFinishTime());
+            */
+        } catch (ServiceException e) {
+            writer.println("Error: cannot add new lot");
         }
-
-        //YYYY-MM-DD HH:MM:SS
-        SimpleDateFormat timeStamp = new SimpleDateFormat(request.getParameter("finish_time"));
-        String finishTime = request.getParameter("finish_time");
-
-
-        Part filePart = request.getPart("img_file");
-        //String filePath = Paths.get(filePart.getSubmittedFileName()).toFile().getAbsolutePath();
-        String imgFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-        InputStream fileContent = filePart.getInputStream();
-
-        // Создание объекта 'Lot lot', заполнение полей.
-        Lot lot = new Lot();
-
-
-
-        // Получение LotServlet, вызов метода 'createLot' с передачей
-        // fileContent
-        ServiceFactory serviceFactory = ServiceFactory.getInstance();
-        LotService lotService = serviceFactory.getLotService();
-
-
-
-        /*
-        try(PrintWriter writer = response.getWriter()){
-            writer.println(name);
-            writer.println(bid);
-            writer.println(condition);
-            writer.println(finishTime);
+        finally {
+            writer.close();
         }
-        */
-
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

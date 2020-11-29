@@ -1,5 +1,6 @@
 package app.models;
 
+import java.io.InputStream;
 import java.io.Serializable;
 
 public class Lot implements Serializable {
@@ -12,8 +13,11 @@ public class Lot implements Serializable {
     private int status;
     private String name;
     private String image;
+    private String imageContent;
     private String startTime;
     private String finishTime;
+    private InputStream fileContent;
+    //private byte[] fileContent;
 
     public Lot(){
         id = 0;
@@ -25,6 +29,7 @@ public class Lot implements Serializable {
         status = -1;
         name = "";
         image = "";
+        imageContent = "";
         startTime = "";
         finishTime = "";
     }
@@ -85,11 +90,18 @@ public class Lot implements Serializable {
         this.name = name;
     }
 
-    public String getImage(){
+    public String getImageName(){
         return image;
     }
-    public void setImage(String image){
+    public void setImageName(String image){
         this.image = image;
+    }
+
+    public String getImageContent(){
+        return imageContent;
+    }
+    public void setImageContent(String imageContent){
+        this.imageContent = imageContent;
     }
 
     public String getStartTime(){

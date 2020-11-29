@@ -16,8 +16,8 @@ public class Lot implements Serializable {
     private String imageContent;
     private String startTime;
     private String finishTime;
-    private InputStream fileContent;
-    //private byte[] fileContent;
+    private InputStream imageInputStream;
+    //private byte[] fileContentStream;
 
     public Lot(){
         id = 0;
@@ -103,6 +103,17 @@ public class Lot implements Serializable {
     public void setImageContent(String imageContent){
         this.imageContent = imageContent;
     }
+
+
+
+    public InputStream getImageInputStream(){
+        return imageInputStream;
+    }
+    public void setImageInputStream(InputStream imageInputStream){
+        this.imageInputStream = imageInputStream;
+    }
+
+
 
     public String getStartTime(){
         return startTime;

@@ -15,11 +15,11 @@
 <form action="<c:url value="/Controller"/>" method="post" enctype="multipart/form-data">
     <div>
         <label for="lot_name">Название</label>
-        <input type="text" name="lot_name" id="lot_name" value="">
+        <input type="text" name="lot_name" id="lot_name" value="" required>
     </div>
     <div>
         <label for="bid">Начальная ставка</label>
-        <input type="number" name="bid" id="bid" value="0">
+        <input type="number" name="bid" id="bid" value="0" required>
     </div>
     <div>
         <label>Состояние</label>
@@ -30,11 +30,11 @@
     </div>
     <div>
         <label for="finish_time">Окончание</label>
-        <input type="datetime-local" name="finish_time" id="finish_time">
+        <input type="datetime-local" name="finish_time" id="finish_time" required>
     </div>
     <div>
         <label for="file">Картинка</label>
-        <input type="file" accept="image/*" name="img_file" id="file" value="">
+        <input type="file" accept="image/*" name="img_file" id="file" value="" required>
     </div>
     <div>
         <input type="submit" value="Создать">

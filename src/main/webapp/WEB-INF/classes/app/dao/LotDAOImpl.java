@@ -74,9 +74,9 @@ public class LotDAOImpl implements LotDAO {
                 ps.setInt(2, lot.getCondition());
                 ps.setInt(3, lot.getBid());
                 ps.setString(4, lot.getImageName());
-                ps.setBinaryStream(5, lot.getImageName());
+                ps.setBinaryStream(5, lot.getImageInputStream());
                 ps.setInt(6, lot.getSellerId());
-                ps.setTimestamp(7, new Timestamp(lot.getFinishTime()));
+                ps.setTimestamp(7, Timestamp.valueOf(lot.getFinishTime()));
                 if (ps.executeUpdate() == 0){
                     throw new DAOException("Cannot add new lot to database");
                 }
