@@ -7,6 +7,7 @@ import app.models.Lot;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class LotDAOImpl implements LotDAO {
@@ -48,6 +49,7 @@ public class LotDAOImpl implements LotDAO {
         PreparedStatement ps = null;
         try {
             try(Connection connection = DB.getConnection()){
+                /*
                 int id = lot.getLotId();
                 int bid = lot.getBid();
                 int bidQuantity = lot.getBidQuantity();
@@ -56,19 +58,27 @@ public class LotDAOImpl implements LotDAO {
                 int condition = lot.getCondition();
                 int status = lot.getStatus();
                 String name = lot.getLotName();
-                String image = lot.getImage();
+                String image = lot.getImageName();
+                String imageContent = lot.getImageContent();
                 String finishTime = lot.getFinishTime();
+                */
 
 
                 String selectQuery = "INSERT INTO users " +
                         "(item_id, item_name, item_condition, status," +
-                        " bid, bid_quantity, main_image_name, seller_id, " +
+                        " bid, bid_quantity, main_image_name, image_content, seller_id, " +
                         "buyer_id, start_time, finish_time) " +
-                        "VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, NULL, NULL, ?);";
+                        "VALUES (NULL, ?, ?, NULL, ?, NULL, ?, ?, ?, NULL, NULL, ?);";
                 ps = connection.prepareStatement(selectQuery);
-                ps.setInt(1, id);
+                ps.setString(1, lot.getLotName());
+                ps.setInt(2, lot.getCondition());
+                ps.setInt(3, lot.getBid());
+                ps.setString(4, lot.getImageName());
+                ps.setBinaryStream(5, lot.getImageName());
+                ps.setInt(6, lot.getSellerId());
+                ps.setTimestamp(7, new Timestamp(lot.getFinishTime()));
                 if (ps.executeUpdate() == 0){
-                    throw new DAOException("Cannot add new user to database");
+                    throw new DAOException("Cannot add new lot to database");
                 }
             }
         } catch (Exception e) {

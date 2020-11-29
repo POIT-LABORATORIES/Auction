@@ -7,6 +7,7 @@ import app.dao.exception.DAOException;
 import app.models.Lot;;
 import app.service.exception.ServiceException;
 
+import java.io.InputStream;
 import java.util.List;
 
 public class LotServiceImpl implements LotService {
@@ -66,5 +67,10 @@ public class LotServiceImpl implements LotService {
         } catch (DAOException e){
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public Lot convertToBase64(InputStream fileContent) throws ServiceException {
+        return null;
     }
 }

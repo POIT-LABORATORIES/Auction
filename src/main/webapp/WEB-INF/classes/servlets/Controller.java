@@ -1,5 +1,10 @@
 package servlets;
 
+import app.models.Lot;
+import app.service.LotService;
+import app.service.ServiceFactory;
+import app.service.UserService;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,6 +17,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.nio.file.Paths;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Enumeration;
 import java.util.Objects;
 
@@ -31,23 +39,37 @@ public class Controller extends HttpServlet {
         } else{
             condition = 1;
         }
+
+        //YYYY-MM-DD HH:MM:SS
+        SimpleDateFormat timeStamp = new SimpleDateFormat(request.getParameter("finish_time"));
         String finishTime = request.getParameter("finish_time");
+
+
         Part filePart = request.getPart("img_file");
         //String filePath = Paths.get(filePart.getSubmittedFileName()).toFile().getAbsolutePath();
-        String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+        String imgFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
         InputStream fileContent = filePart.getInputStream();
 
         // Создание объекта 'Lot lot', заполнение полей.
+        Lot lot = new Lot();
+
+
 
         // Получение LotServlet, вызов метода 'createLot' с передачей
         // fileContent
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        LotService lotService = serviceFactory.getLotService();
 
+
+
+        /*
         try(PrintWriter writer = response.getWriter()){
             writer.println(name);
             writer.println(bid);
             writer.println(condition);
             writer.println(finishTime);
         }
+        */
 
     }
 

@@ -3,6 +3,7 @@ package app.service;
 import app.models.Lot;
 import app.service.exception.ServiceException;
 
+import java.io.InputStream;
 import java.util.List;
 
 public interface LotService {
@@ -11,4 +12,5 @@ public interface LotService {
     void deleteLot(Lot lot) throws ServiceException;
     void editLot(Lot lot) throws ServiceException;
     Lot getLotById(int id) throws ServiceException;
+    Lot convertToBase64(InputStream fileContent) throws ServiceException;
 }
