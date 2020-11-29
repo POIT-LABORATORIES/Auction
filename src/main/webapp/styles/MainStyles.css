@@ -161,6 +161,11 @@ body
     align-content: start;
     height: min-content;
 }
+.newsTitleBlock h3
+{
+    text-align: left;
+    margin-bottom: 0;
+}
 .newsBlock a:hover
 {
     color: #F11A36;
@@ -178,6 +183,15 @@ body
 .newsBlockBottom p
 {
     margin: 0;
+}
+.newsPriceBlock
+{
+    text-align: left;
+}
+.newsPriceBlock h2
+{
+    margin-top: 0;
+    padding-left: 1em;
 }
 .sidebarContainer
 {

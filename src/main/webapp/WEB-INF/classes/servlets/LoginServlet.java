@@ -7,6 +7,7 @@ import app.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 public class LoginServlet extends HttpServlet {
@@ -20,6 +21,7 @@ public class LoginServlet extends HttpServlet {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService userService = serviceFactory.getUserService();
         PrintWriter writer = response.getWriter();
+        //PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
         try{
             String firstName = request.getParameter("first-name");
             String email = request.getParameter("email");
@@ -27,9 +29,16 @@ public class LoginServlet extends HttpServlet {
 
             User user = new User(-1, firstName, email, password);
             userService.registration(user);
-            session.setAttribute("user", user);
-            session.setMaxInactiveInterval(-1);
 
+            // Synchronized access to session object.
+            final Object lock = session.getId().intern();
+            synchronized (lock){
+                session.setAttribute("user", user);
+                session.setMaxInactiveInterval(-1);
+            }
+
+            //response.setCharacterEncoding("UTF-8");
+            //response.setContentType("text/html");
             response.sendRedirect(request.getContextPath() + "/main");
         }
         catch(Exception ex){
