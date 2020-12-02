@@ -4,6 +4,7 @@ import app.models.Lot;
 import app.service.LotService;
 import app.service.ServiceFactory;
 import app.service.UserService;
+import app.service.exception.ServiceException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Objects;
 
 @MultipartConfig
@@ -33,7 +35,8 @@ public class Controller extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        try (PrintWriter writer = response.getWriter()){
+        PrintWriter writer = response.getWriter();
+        try {
             String name = request.getParameter("lot_name");
             String bid = request.getParameter("bid");
             int condition;
@@ -71,19 +74,35 @@ public class Controller extends HttpServlet {
             lot.setBid(Integer.parseInt(bid));
             lot.setCondition(condition);
             lot.setFinishTime(finishTime);
+            lot.setImageName(imgFileName);
+            lot.setImageInputStream(fileContent);
 
 
             // Получение LotServlet, вызов метода 'createLot' с передачей
             // fileContent
-            //ServiceFactory serviceFactory = ServiceFactory.getInstance();
-            //LotService lotService = serviceFactory.getLotService();
+            ServiceFactory serviceFactory = ServiceFactory.getInstance();
+            LotService lotService = serviceFactory.getLotService();
+            lotService.addLot(lot);
 
+            //response.sendRedirect(request.getContextPath() + "/main");
 
+            //
+            List<Lot> lots = lotService.getAllActiveLots();
+            request.setAttribute("lots", lots);
+            request.getRequestDispatcher("/usr/lots.jsp").forward(request, response);
 
+            /*
             writer.println(lot.getLotName());
             writer.println(lot.getBid());
             writer.println(lot.getCondition());
             writer.println(lot.getFinishTime());
+            */
+        } catch (ServiceException e) {
+            writer.println("Error: cannot add new lot");
+            writer.println(e);
+        }
+        finally {
+            writer.close();
         }
     }
 

@@ -50,92 +50,24 @@
         </nav>
         -->
     </header>
+    <!--
     <div class="midStyle"><h1>Новости</h1></div>
+    -->
+    <div class="midStyle"><h1>${sess}</h1></div>
     <div class="midContainer">
         <div class="newsContainer">
-            <div class="newsBlock">
-                <a href="HTML/FFVII.html">
-                    <div class="newsImgBlock"><img src="Pictures/FFB.jpg" alt="Final Fantasy VII"></div>
-                    <div class="newsTitleBlock"><h3>Всё, что нужно знать о Final Fantasy VII Remake</h3></div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/silent_hill.html">
-                    <div class="newsImgBlock"><img src="Pictures/silenthill.jpg" alt="Silent Hill"></div>
-                    <div class="newsTitleBlock"><h3>СМИ: Sony работает над перезапуском Silent Hill и недовольна Death Stranding</h3></div>
-                    <div class="newsPriceBlock"><h2>US $75</h2></div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/gdc2020.jpg" alt="The Last of Us"></div>
-                    <div class="newsTitleBlock"><h3>Организаторы GDC 2020 опубликовали расписание презентаций</h3></div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/E3_cancelled.html">
-                    <div class="newsImgBlock"><img src="Pictures/e3.jpg" alt="The Last of Us"></div>
-                    <div class="newsTitleBlock"><h3>Официально: E3 2020 отменили</h3></div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/witcher.jpg" alt="Цитадель, HF:Alyx"></div>
-                    <div class="newsTitleBlock">
-                        <h3>Нет, CD Projekt не заявила, что следующей игрой после Cyberpunk 2077 будет новый «Ведьмак»</h3>
-                    </div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/cp2077fm.jpg" alt="Цитадель, HF:Alyx"></div>
-                    <div class="newsTitleBlock">
-                        <h3>К 8 марта создатели Cyberpunk 2077 показали постер с женской версией Ви</h3>
-                    </div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/codw.jpg" alt="Цитадель, HF:Alyx"></div>
-                    <div class="newsTitleBlock">
-                        <h3>Вышла Call of Duty: Warzone — бесплатная королевская битва на 150 человек</h3>
-                    </div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/DOOMEternal.jpg" alt="Цитадель, HF:Alyx"></div>
-                    <div class="newsTitleBlock">
-                        <h3>Bethesda обновила системные требования DOOM Eternal</h3>
-                    </div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/RE3.jpg" alt="RE:3"></div>
-                    <div class="newsTitleBlock">
-                        <h3>В российской рознице подорожают ремейки Resident Evil 3 и Final Fantasy VII</h3>
-                    </div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
-            <div class="newsBlock">
-                <a href="HTML/Empty.html">
-                    <div class="newsImgBlock"><img src="Pictures/TLOU2.jpg" alt="Цитадель, HF:Alyx"></div>
-                    <div class="newsTitleBlock">
-                        <h3>Сегодня должна была выйти The Last of Us: Part II</h3>
-                    </div>
-                </a>
-                <div class="newsBlockBottom"><p>07.03.2020</p></div>
-            </div>
+            <c:forEach var="lot" items="${lots}">
+                <div class="newsBlock">
+                    <a href="${lot.getLotId()}">
+                        <div class="newsImgBlock">
+                            <img src="data:image/jpg;base64,${lot.getImageContent()}" alt="${lot.getImageName()}">
+                        </div>
+                        <div class="newsTitleBlock"><h3>${lot.getLotName()}</h3></div>
+                        <div class="newsPriceBlock"><h2>US $${lot.getBid()}</h2></div>
+                    </a>
+                    <div class="newsBlockBottom"><p>${lot.getFinishTime()}</p></div>
+                </div>
+            </c:forEach>
         </div>
         <div class="sidebarContainer">
             <div class="sidebarTitle"><h2>Лучшие игры декады</h2></div>

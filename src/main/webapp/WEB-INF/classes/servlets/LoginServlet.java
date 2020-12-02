@@ -7,7 +7,6 @@ import app.service.UserService;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 public class LoginServlet extends HttpServlet {

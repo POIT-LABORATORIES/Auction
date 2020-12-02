@@ -10,14 +10,13 @@ public class Lot implements Serializable {
     private int sellerId;
     private int buyerId;
     private int condition;
-    private int status;
+    private String status;
     private String name;
     private String image;
     private String imageContent;
     private String startTime;
     private String finishTime;
     private InputStream imageInputStream;
-    //private byte[] fileContentStream;
 
     public Lot(){
         id = 0;
@@ -26,12 +25,13 @@ public class Lot implements Serializable {
         sellerId = 0;
         buyerId = 0;
         condition = -1;
-        status = -1;
+        status = "";
         name = "";
         image = "";
         imageContent = "";
         startTime = "";
         finishTime = "";
+        imageInputStream = null;
     }
 
     public int getLotId(){
@@ -76,10 +76,10 @@ public class Lot implements Serializable {
         this.condition = condition;
     }
 
-    public int getStatus(){
+    public String getStatus(){
         return status;
     }
-    public void setStatus(int status){
+    public void setStatus(String status){
         this.status = status;
     }
 

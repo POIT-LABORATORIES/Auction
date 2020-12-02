@@ -12,5 +12,5 @@ public interface LotService {
     void deleteLot(Lot lot) throws ServiceException;
     void editLot(Lot lot) throws ServiceException;
     Lot getLotById(int id) throws ServiceException;
-    Lot convertToBase64(InputStream fileContent) throws ServiceException;
+    String convertToBase64(InputStream fileContent) throws ServiceException;
 }

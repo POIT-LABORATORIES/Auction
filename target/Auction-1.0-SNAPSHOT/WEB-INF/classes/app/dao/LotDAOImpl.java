@@ -7,13 +7,44 @@ import app.models.Lot;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 public class LotDAOImpl implements LotDAO {
     @Override
     public List<Lot> getActiveLots() throws DAOException {
-        return null;
+        PreparedStatement ps = null;
+        try {
+            List<Lot> lotList = new ArrayList<>();
+            try(Connection connection = DB.getConnection()){
+                String selectQuery = "SELECT * FROM items WHERE status = 'ACTIVE'";
+                ps = connection.prepareStatement(selectQuery);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    Lot lot = new Lot();
+                    lot.setLotId(rs.getInt("item_id"));
+                    lot.setLotName(rs.getString("item_name"));
+                    lot.setCondition(rs.getInt("item_condition"));
+                    lot.setStatus(rs.getString("status"));
+                    lot.setBid(rs.getInt("bid"));
+                    lot.setBidQuantity(rs.getInt("bid_quantity"));
+                    lot.setImageName(rs.getString("main_image_name"));
+                    lot.setImageInputStream(rs.getBinaryStream("image_content"));
+                    lot.setSellerId(rs.getInt("seller_id"));
+                    lot.setBuyerId(rs.getInt("buyer_id"));
+                    lot.setStartTime(rs.getTimestamp("start_time").toString());
+                    lot.setFinishTime(rs.getTimestamp("finish_time").toString());
+                    lotList.add(lot);
+                }
+            }
+            return lotList;
+        } catch (Exception e) {
+            throw new DAOException(e);
+        } finally{
+            DBUtil.closeStatement(ps);
+        }
     }
 
     @Override
@@ -63,20 +94,27 @@ public class LotDAOImpl implements LotDAO {
                 String finishTime = lot.getFinishTime();
                 */
 
-
-                String selectQuery = "INSERT INTO users " +
+                /*
+                String selectQuery = "INSERT INTO items " +
                         "(item_id, item_name, item_condition, status," +
                         " bid, bid_quantity, main_image_name, image_content, seller_id, " +
                         "buyer_id, start_time, finish_time) " +
-                        "VALUES (NULL, ?, ?, NULL, ?, NULL, ?, ?, ?, NULL, NULL, ?);";
+                        "VALUES (NULL, ?, ?, NULL, ?, NULL, ?, ?, ?, 1, NULL, ?);";
+                */
+                String selectQuery = "INSERT INTO items " +
+                        "(item_name, item_condition," +
+                        " bid, main_image_name, image_content, seller_id, " +
+                        "buyer_id, finish_time) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, 1, ?);";
                 ps = connection.prepareStatement(selectQuery);
                 ps.setString(1, lot.getLotName());
                 ps.setInt(2, lot.getCondition());
                 ps.setInt(3, lot.getBid());
                 ps.setString(4, lot.getImageName());
-                //ps.setBinaryStream(5, lot.getImageName());
-                ps.setInt(6, lot.getSellerId());
-                //ps.setTimestamp(7, new Timestamp(lot.getFinishTime()));
+                ps.setBinaryStream(5, lot.getImageInputStream());
+                //ps.setInt(6, lot.getSellerId());
+                ps.setInt(6, 1);
+                ps.setTimestamp(7, Timestamp.valueOf(lot.getFinishTime()));
                 if (ps.executeUpdate() == 0){
                     throw new DAOException("Cannot add new lot to database");
                 }

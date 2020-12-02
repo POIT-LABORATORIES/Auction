@@ -23,7 +23,7 @@
                 <li><a href="<c:url value="/main"/>">Главная</a></li>
                 <li><a href="<c:url value="/main"/>">Магазин</a></li>
                 <li><a href="<c:url value="/main"/>">Блог</a>
-                    <c:if test="${user == null}">
+                <c:if test="${user == null}">
                 <li><a href="<c:url value="/login"/>">Регистрация</a></li>
                 </c:if>
                 <c:if test="${user != null}">

@@ -74,6 +74,7 @@ public class Controller extends HttpServlet {
             lot.setBid(Integer.parseInt(bid));
             lot.setCondition(condition);
             lot.setFinishTime(finishTime);
+            lot.setImageName(imgFileName);
             lot.setImageInputStream(fileContent);
 
 
@@ -83,10 +84,12 @@ public class Controller extends HttpServlet {
             LotService lotService = serviceFactory.getLotService();
             lotService.addLot(lot);
 
+            //response.sendRedirect(request.getContextPath() + "/main");
+
             //
-            //List<Lot> lots = lotService.getAllActiveLots();
-            //request.setAttribute("lots", lots);
-            //request.getRequestDispatcher("/lots.jsp").forward(request, response);
+            List<Lot> lots = lotService.getAllActiveLots();
+            request.setAttribute("lots", lots);
+            request.getRequestDispatcher("/usr/lots.jsp").forward(request, response);
 
             /*
             writer.println(lot.getLotName());
@@ -96,6 +99,7 @@ public class Controller extends HttpServlet {
             */
         } catch (ServiceException e) {
             writer.println("Error: cannot add new lot");
+            writer.println(e);
         }
         finally {
             writer.close();
