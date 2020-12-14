@@ -6,10 +6,6 @@ import app.dao.exception.DAOException;
 import app.models.Lot;;
 import app.service.exception.ServiceException;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Base64;
 import java.util.List;
 
 public class LotServiceImpl implements LotService {
@@ -24,9 +20,26 @@ public class LotServiceImpl implements LotService {
     public List<Lot> getAllActiveLots() throws ServiceException {
         try {
             List<Lot> lotList = lotDAO.getActiveLots();
+            /*
             for (Lot lot: lotList){
                 lot.setImageContent(convertToBase64(lot.getImageInputStream()));
             }
+            */
+            return lotList;
+        } catch (DAOException e){
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public List<Lot> getUserLots(int userId) throws ServiceException {
+        try {
+            List<Lot> lotList = lotDAO.getUserLots(userId);
+            /*
+            for (Lot lot: lotList){
+                lot.setImageContent(convertToBase64(lot.getImageInputStream()));
+            }
+            */
             return lotList;
         } catch (DAOException e){
             throw new ServiceException(e);
@@ -45,11 +58,9 @@ public class LotServiceImpl implements LotService {
     }
 
     @Override
-    public void deleteLot(Lot lot) throws ServiceException {
+    public void deleteLot(int id) throws ServiceException {
         try {
-            if (lot != null){
-                lotDAO.delete(lot);
-            }
+            lotDAO.delete(id);
         } catch (DAOException e){
             throw new ServiceException(e);
         }
@@ -75,7 +86,7 @@ public class LotServiceImpl implements LotService {
         }
     }
 
-    @Override
+    /*
     public String convertToBase64(InputStream inputStream) throws ServiceException {
         String base64Image;
         try{
@@ -97,4 +108,5 @@ public class LotServiceImpl implements LotService {
         }
         return base64Image;
     }
+    */
 }

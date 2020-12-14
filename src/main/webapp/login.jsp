@@ -15,8 +15,9 @@
 </head>
 <body>
 <div class="formContainer">
-    <form action="login" method="post" enctype="multipart/form-data">
+    <form action="login" method="post">
         <h2>Авторизация</h2>
+        <input type="hidden" name="action" value="authenticate">
         <input type="hidden" name="action" value="sign_in">
         <div class="formField inputRight">
             <label for="email">E-mail</label>

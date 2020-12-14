@@ -30,7 +30,6 @@ public class MainServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         response.setCharacterEncoding("UTF-8");
-        //response.setHeader("accept-language", "ru");
         PrintWriter writer = response.getWriter();
         try{
             ServiceFactory serviceFactory = ServiceFactory.getInstance();

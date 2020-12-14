@@ -17,7 +17,7 @@
 <div class="formContainer">
     <form action="login" method="post">
         <h2>Регистрация</h2>
-        <input type="hidden" name="action" value="add">
+        <input type="hidden" name="action" value="register">
         <div class="formField multiInput">
             <label for="name">Name</label>
             <input type="text" name="first-name" id="name" placeholder="name" value="" required>

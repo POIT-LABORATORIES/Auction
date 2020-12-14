@@ -1,0 +1,72 @@
+.main
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+table
+{
+    border-spacing: 2px;
+}
+th
+{
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: center;
+}
+tr
+{
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+td
+{
+    display: table-cell;
+    vertical-align: inherit;
+    text-align: center;
+}
+.table_col
+{
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    background: white;
+    text-align: left;
+    border-collapse: collapse;
+    color: #3E4347;
+}
+.table_col th:first-child, .table_col td:first-child
+{
+    color:#F5F6F6;
+    border-left: none;
+    background-color: #C7DAF0;
+}
+.table_col th
+{
+    font-weight: normal;
+    border-bottom: 2px solid #F5E1A6;
+    border-right: 20px solid white;
+    border-left: 20px solid white;
+    padding: 8px 10px;
+}
+.table_col td
+{
+    border-right: 20px solid white;
+    border-left: 20px solid white;
+    padding: 12px 10px;
+    color: #8b8e91;
+}
+.lotTitle
+{
+    text-decoration:none;
+    color: white;
+}
+.lotTitle:hover
+{
+    color: blue;
+}
+.horizontal-centered-text
+{
+    text-align: center;
+}

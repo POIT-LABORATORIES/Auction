@@ -12,28 +12,28 @@
     <title>Title</title>
 </head>
 <body>
-<form action="<c:url value="/Controller"/>" method="post" enctype="multipart/form-data">
+<form action="<c:url value="/AddLot"/>" method="post" enctype="multipart/form-data">
     <div>
-        <label for="lot_name">Название</label>
+        <label for="lot_name">Название/Title</label>
         <input type="text" name="lot_name" id="lot_name" value="" required>
     </div>
     <div>
-        <label for="bid">Начальная ставка</label>
+        <label for="bid">Начальная ставка/Starting bid</label>
         <input type="number" name="bid" id="bid" value="0" required>
     </div>
     <div>
-        <label>Состояние</label>
-        <p>Новый</p>
+        <label>Состояние/Condition</label>
+        <p>Новый/New</p>
         <input type="radio" name="condition" value="New" checked>
-        <p>Использованный</p>
+        <p>Использованный/Used</p>
         <input type="radio" name="condition" value="Used">
     </div>
     <div>
-        <label for="finish_time">Окончание</label>
+        <label for="finish_time">Окончание/Finish</label>
         <input type="datetime-local" name="finish_time" id="finish_time" required>
     </div>
     <div>
-        <label for="file">Картинка</label>
+        <label for="file">Картинка/Image</label>
         <input type="file" accept="image/*" name="img_file" id="file" value="" required>
     </div>
     <div>

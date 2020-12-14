@@ -6,6 +6,7 @@ import app.models.Lot;
 import java.util.List;
 
 public interface LotDAO extends DAO<Lot> {
+    List<Lot> getUserLots(int userId) throws DAOException;
     List<Lot> getActiveLots() throws DAOException;
     List<Lot> getActiveLots(int sellerId) throws DAOException;
     List<Lot> getExpiredLots(int sellerId) throws DAOException;

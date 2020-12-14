@@ -20,14 +20,26 @@ public class LoginServlet extends HttpServlet {
         ServiceFactory serviceFactory = ServiceFactory.getInstance();
         UserService userService = serviceFactory.getUserService();
         PrintWriter writer = response.getWriter();
-        //PrintWriter out = new PrintWriter(new OutputStreamWriter(response.getOutputStream(), "UTF8"), true);
         try{
             String firstName = request.getParameter("first-name");
             String email = request.getParameter("email");
             String password = request.getParameter("pass");
 
             User user = new User(-1, firstName, email, password);
-            userService.registration(user);
+
+            switch (request.getParameter("action")){
+                case "authenticate":
+                    user = userService.authorization(user);
+                    break;
+                case "register":
+                    userService.registration(user);
+                    response.sendRedirect(request.getContextPath() + "/login.jsp");
+                    break;
+                case "logout":
+                    session.invalidate();
+                    response.sendRedirect(request.getContextPath() + "/main");
+                    break;
+            }
 
             // Synchronized access to session object.
             final Object lock = session.getId().intern();
@@ -36,8 +48,6 @@ public class LoginServlet extends HttpServlet {
                 session.setMaxInactiveInterval(-1);
             }
 
-            //response.setCharacterEncoding("UTF-8");
-            //response.setContentType("text/html");
             response.sendRedirect(request.getContextPath() + "/main");
         }
         catch(Exception ex){
@@ -52,6 +62,7 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/registration.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/registration.jsp").
+                forward(request, response);
     }
 }

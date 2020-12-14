@@ -37,11 +37,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(User user) throws ServiceException {
+    public void deleteUser(int id) throws ServiceException {
         try {
-            if (user != null){
-                userDAO.delete(user);
-            }
+            userDAO.delete(id);
         } catch (DAOException e){
             throw new ServiceException(e);
         }
@@ -76,6 +74,18 @@ public class UserServiceImpl implements UserService {
         } catch (DAOException e){
             throw new ServiceException(e);
         }
+    }
+
+    @Override
+    public User authorization(User user) throws ServiceException {
+        try {
+            if (user != null){
+                user = userDAO.authorization(user);
+            }
+        } catch (DAOException e){
+            throw new ServiceException(e);
+        }
+        return user;
     }
 
     public static boolean emailExists(String email) throws ServiceException {

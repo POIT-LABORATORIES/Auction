@@ -21,34 +21,23 @@
         <nav>
             <ul class="topmenu">
                 <li><a href="<c:url value="/main"/>">Главная</a></li>
-                <li><a href="<c:url value="/main"/>">Магазин</a></li>
-                <li><a href="<c:url value="/main"/>">Блог</a>
+                <li><a href="<c:url value="/main"/>">Площадка</a></li>
+                <li><a href="<c:url value="/main"/>">О нас</a>
                     <c:if test="${user == null}">
                 <li><a href="<c:url value="/login"/>">Регистрация</a></li>
                 </c:if>
                 <c:if test="${user != null}">
                     <li><a href="" class="down">${user.getName()}</a>
                         <ul class="submenu">
-                            <li><a href="">Профиль</a></li>
-                            <li><a href="">Слоты</a></li>
-                            <li><a href="">Archive</a></li>
+                            <!--<li><a href="">Профиль</a></li>-->
+                            <li><a href="<c:url value="/profile/lots"/>">Мои лоты</a></li>
+                            <li><a href="<c:url value="/AddLot"/>">Создать лот</a></li>
                             <li><a href="">Выйти</a></li>
                         </ul>
                     </li>
                 </c:if>
             </ul>
         </nav>
-        <!--
-        <nav class="menu">
-            <ul>
-                <li><a href="<c:url value="/main"/>">Новости</a></li>
-                <li><a href="<c:url value="/main"/>">Технологии</a></li>
-                <li><a href="<c:url value="/main"/>">Индустрия</a></li>
-                <li><a href="<c:url value="/login"/>">Регистрация</a></li>
-                <li><a href="#">${user.getName()}</a></li>
-            </ul>
-        </nav>
-        -->
     </header>
     <!--
     <div class="midStyle"><h1>Новости</h1></div>
@@ -58,7 +47,7 @@
         <div class="newsContainer">
             <c:forEach var="lot" items="${lots}">
                 <div class="newsBlock">
-                    <a href="${lot.getLotId()}">
+                    <a href="<c:url value="/lot/${lot.getLotId()}"/>">
                         <div class="newsImgBlock">
                             <img src="data:image/jpg;base64,${lot.getImageContent()}" alt="${lot.getImageName()}">
                         </div>
@@ -70,36 +59,24 @@
             </c:forEach>
         </div>
         <div class="sidebarContainer">
-            <div class="sidebarTitle"><h2>Лучшие игры декады</h2></div>
+            <div class="sidebarTitle"><h2>Активные лоты</h2></div>
             <div class="bestListBar">
                 <ol class="bestList">
-                    <li>Super Mario Galaxy 2</li>
-                    <li>The Legend of Zelda: Breath of the Wild</li>
-                    <li>Red Dead Redemption 2</li>
-                    <li>Grand Theft Auto V</li>
-                    <li>Super Mario Odyssey</li>
-                    <li>Mass Effect 2</li>
-                    <li>The Elder Scrolls V: Skyrim</li>
-                    <li>The Last of Us </li>
-                    <li>God of War</li>
-                    <li>Batman: Arkham City</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
+                    <li>-</li>
                 </ol>
             </div>
         </div>
     </div>
     <jsp:include page="WEB-INF/general-content/footer.html" />
-    <!--
-    <footer class="midStyle footerContainer">
-        <div class="footerText">
-            <p>Ждете Cyberpunk 2077 или PlayStation 5? Интересуетесь новой Call of Duty
-                или ремейком Resident Evil? Ищите альтернативу Civiliztion или Warcraft?
-                Смотрите “Ведьмака”, обожаете “Звездные войны”? Обсуждаете теории “Мстители:
-                Война бесконечности” и мечтаете о новой “Дюне”? Подбираете новый процессор или
-                видеокарту? Интересуетесь черными дырами, достижениями в медицине, SpaceX,
-                Tesla и другими проектами Илона Маска?</p>
-        </div>
-    </footer>
-    -->
 </div>
 </body>
 </html>

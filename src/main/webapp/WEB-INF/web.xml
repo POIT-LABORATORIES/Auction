@@ -5,13 +5,13 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>ListServlet</servlet-name>
-        <servlet-class>servlets.ListServlet</servlet-class>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>servlets.IndexServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ListServlet</servlet-name>
-        <url-pattern>/userlist</url-pattern>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -35,14 +35,46 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>Controller</servlet-name>
-        <servlet-class>servlets.Controller</servlet-class>
+        <servlet-name>LotViewServlet</servlet-name>
+        <servlet-class>servlets.lot.LotViewServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Controller</servlet-name>
-        <url-pattern>/Controller</url-pattern>
+        <servlet-name>LotViewServlet</servlet-name>
+        <url-pattern>/lot/*</url-pattern>
     </servlet-mapping>
+
+    <!-- Lot servlets -->
+    <servlet>
+        <servlet-name>UserLotsServlet</servlet-name>
+        <servlet-class>servlets.user.lot.UserLotsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UserLotsServlet</servlet-name>
+        <url-pattern>/profile/lots</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddLotServlet</servlet-name>
+        <servlet-class>servlets.user.lot.AddLotServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddLotServlet</servlet-name>
+        <url-pattern>/AddLot</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LotServlet</servlet-name>
+        <servlet-class>servlets.user.lot.LotServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LotServlet</servlet-name>
+        <url-pattern>/profile/lots/*</url-pattern>
+    </servlet-mapping>
+    <!-- -->
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>

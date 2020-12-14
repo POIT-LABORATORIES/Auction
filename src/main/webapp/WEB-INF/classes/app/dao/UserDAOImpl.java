@@ -43,15 +43,10 @@ public class UserDAOImpl implements UserDAO {
                 ps = connection.prepareStatement(selectQuery);
                 ps.setString(1, user.getEmail());
                 ResultSet rs = ps.executeQuery();
-                String password = "";
                 if (rs.next()){
-                    password = rs.getString("password");
+                    throw new DAOException("The email is already in use");
                 } else{
                     create(user);
-                    return;
-                }
-                if (!user.getPassword().equals(password)){
-                    throw new DAOException("Incorrect password");
                 }
             }
         } catch (Exception e){
@@ -77,6 +72,34 @@ public class UserDAOImpl implements UserDAO {
         } finally{
             DBUtil.closeStatement(ps);
         }
+    }
+
+    @Override
+    public User authorization(User user) throws DAOException {
+        PreparedStatement ps = null;
+        try{
+            try(Connection connection = DB.getConnection()){
+                String selectQuery = "SELECT * FROM users WHERE email = ?";
+                ps = connection.prepareStatement(selectQuery);
+                ps.setString(1, user.getEmail());
+                ResultSet rs = ps.executeQuery();
+                String password = "";
+                if (rs.next()){
+                    password = rs.getString("password");
+                } else{
+                    throw new DAOException("Incorrect email");
+                }
+                if (!user.getPassword().equals(password)){
+                    throw new DAOException("Incorrect password");
+                }
+                user = retrieve(rs.getInt("user_id"));
+            }
+        } catch (Exception e){
+            throw new DAOException(e);
+        } finally{
+            DBUtil.closeStatement(ps);
+        }
+        return user;
     }
 
     @Override
@@ -157,13 +180,13 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void delete(User user) throws DAOException {
+    public void delete(int id) throws DAOException {
         PreparedStatement ps = null;
         try {
             try(Connection connection = DB.getConnection()){
                 String deleteQuery = "DELETE FROM users WHERE user_id = ?";
                 ps = connection.prepareStatement(deleteQuery);
-                ps.setInt(1, user.getId());
+                ps.setInt(1, id);
                 if (ps.executeUpdate() == 0){
                     throw new DAOException("Cannot delete user in database");
                 }
@@ -174,33 +197,4 @@ public class UserDAOImpl implements UserDAO {
             DBUtil.closeStatement(ps);
         }
     }
-
-    /*
-    private Connection getConnection() throws SQLException, NamingException {
-        ConnectionPool pool = ConnectionPool.getInstance();
-        return pool.getConnection();
-    }
-    */
-
-
-    /*
-    // Подключение к БД без Connection Pool.
-    private Connection createConnection() throws SQLException, ClassNotFoundException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        InputStream input = classLoader.getResourceAsStream("db.properties");
-        Properties dbProperties = new Properties();
-        try {
-            dbProperties.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String url = dbProperties.getProperty("url");
-        String name = dbProperties.getProperty("username");
-        String password = dbProperties.getProperty("password");
-        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-        return DriverManager.getConnection(url, name, password);
-    }
-    */
-
 }
