@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-
+    <jsp:include page="WEB-INF/general-content/footer.html" />
 </div>
 </body>
 </html>
